@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_width">105dp</dimen>
+    <dimen name="button_height">110dp</dimen>
+    <dimen name="button_background_width">110dp</dimen>
+    <dimen name="button_background_height">115dp</dimen>
+    <dimen name="font_xsmall">10sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_medium">18sp</dimen>
+    <dimen name="font_large">24sp</dimen>
+    <dimen name="margin_xsmall">7.5dp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_large">55dp</dimen>
+    <dimen name="image_size">100dp</dimen>
+</resources>
