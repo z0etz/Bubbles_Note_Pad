@@ -30,6 +30,7 @@
         <Button
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
+            android:id="@+id/bNewNote"
             android:layout_margin="@dimen/margin_small"
             android:backgroundTint="@color/champagne"
             android:text="@string/new_note"
@@ -39,17 +40,25 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="106.4dp"
+        android:layout_height="175.6dp"
+        android:src="@drawable/a_gold_colored_fish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </ImageView>
+
+    <!--    Views of notes in bubbles will be added here.-->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/rvNoteList"
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-
-    <!--    Views of notes in bubbles will be added here.-->
-        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
