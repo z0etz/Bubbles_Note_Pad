@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Bubbles Note Pad</string>
     <string name="new_note">Ny anteckning</string>
+    <string name="cancel">Avbryt</string>
+    <string name="save">Spara</string>
+    <string name="delete">Släng</string>
+    <string name="title">Titel</string>
+    <string name="note">Anteckning</string>
 </resources>

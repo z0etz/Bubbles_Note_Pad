@@ -7,14 +7,33 @@
     android:background="@drawable/fish_and_champagne"
     tools:context=".MainActivity">
 
+
+    <!--    Views of notes in bubbles will be added here.-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvNoteList"
+        android:layout_margin="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/banner_height"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/brown"/>
+
     <Button
         android:layout_width="@dimen/button_background_width"
         android:layout_height="@dimen/button_background_height"
         android:layout_margin="@dimen/margin_xsmall"
         android:backgroundTint="@color/brown"
         android:textSize="@dimen/font_small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -22,43 +41,32 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/bNewNote"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:id="@+id/bNewNote"
             android:layout_margin="@dimen/margin_small"
             android:backgroundTint="@color/champagne"
+            android:fontFamily="cursive"
             android:text="@string/new_note"
             android:textColor="@color/brown"
             android:textSize="@dimen/font_small"
-            android:fontFamily="cursive"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ImageView
-        android:layout_width="106.4dp"
-        android:layout_height="175.6dp"
+        android:layout_width="@dimen/fish_width"
+        android:layout_height="@dimen/fish_height"
         android:src="@drawable/a_gold_colored_fish"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
     </ImageView>
-
-    <!--    Views of notes in bubbles will be added here.-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvNoteList"
-        android:layout_marginHorizontal="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

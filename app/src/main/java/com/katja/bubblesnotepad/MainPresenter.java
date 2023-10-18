@@ -1,5 +1,7 @@
 package com.katja.bubblesnotepad;
 
+import java.util.List;
+
 public class MainPresenter implements MainContract.Presenter {
 
     NoteManager noteManager;
@@ -14,9 +16,8 @@ public class MainPresenter implements MainContract.Presenter {
         this.navigator = navigator;
     }
     @Override
-    public Note createNoteClicked() {
+    public void createNoteClicked() {
         navigator.navigateToActivity(EditActivity.class);
-        return null;
     }
 
     @Override
@@ -24,8 +25,19 @@ public class MainPresenter implements MainContract.Presenter {
 
     }
 
+    public void saveNote(String noteName, String noteText){
+        noteManager.createNote(noteName, noteText);
+        navigator.navigateToActivity(MainActivity.class);
+    }
     @Override
     public Note editNote(Note note) {
         return null;
     }
+
+    @Override
+    public void onNoteListCreated() {
+        List<Note> notes = noteManager.getNotes();
+        view.showNotes(notes);
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.katja.bubblesnotepad;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoteManager {
     private static ArrayList<Note> notes = new ArrayList<>();
@@ -10,4 +11,5 @@ public class NoteManager {
         notes.add(note);
         return note;
     }
+    public List<Note> getNotes() { return notes; }
 }
