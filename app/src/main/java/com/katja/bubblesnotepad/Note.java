@@ -1,14 +1,19 @@
 package com.katja.bubblesnotepad;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable {
     private String noteName;
 
     private String noteText;
 
+    private int id; // Unique identifier
+
     // Constructor
-    public Note(String noteName, String noteText) {
+    public Note(int id, String noteName, String noteText) {
         this.noteName = noteName;
         this.noteText = noteText;
+        this.id = id;
     }
 
     //Getters and setters
@@ -30,6 +35,10 @@ public class Note {
 
     //Other methods
     public String toString() {
-        return noteName + ": " + noteText;
+        return noteName;
+    }
+
+    public int getId() {
+        return id;
     }
 }

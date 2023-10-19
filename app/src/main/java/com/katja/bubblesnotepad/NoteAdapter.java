@@ -10,14 +10,24 @@ import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
     private List<Note> notes;
+    private OnItemClickListener clickListener;
 
-    public NoteAdapter(Context context, List<Note> notes) {
+    // Constructor
+    public NoteAdapter(Context context, List<Note> notes, OnItemClickListener clickListener) {
         this.notes = notes;
+        this.clickListener = clickListener;
     }
 
+    // Interface for item click callbacks
+    public interface OnItemClickListener {
+        void onItemClick(Note note);
+    }
+
+
+    // Methods
     @Override
     public NoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_edit, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bubble, parent, false);
         return new NoteViewHolder(view);
     }
 
@@ -25,6 +35,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public void onBindViewHolder(NoteViewHolder holder, int position) {
         Note note = notes.get(position);
         holder.tv.setText(note.getNoteName());
+
+        // Set a click listener for the item view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickListener != null) {
+                    clickListener.onItemClick(note);
+                }
+            }
+        });
     }
 
     @Override
@@ -37,7 +57,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
         public NoteViewHolder(View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.rvNoteList);
+            tv = itemView.findViewById(R.id.noteTitle);
         }
     }
 }

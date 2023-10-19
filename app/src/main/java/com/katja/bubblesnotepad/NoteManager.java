@@ -1,15 +1,90 @@
 package com.katja.bubblesnotepad;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class NoteManager {
+    private static final String SHARED_PREF_NAME = "notes";
+    private static final String SHARED_PREF_KEY = "notes_key";
     private static ArrayList<Note> notes = new ArrayList<>();
+    private int nextId = 0; // Initiate ID counter
 
-    public Note createNote(String noteName, String noteText){
-        Note note = new Note(noteName, noteText);
+    public Note createNote(String noteName, String noteText) {
+        int newId = nextId;
+        nextId++;
+
+        Note note = new Note(newId, noteName, noteText);
         notes.add(note);
         return note;
     }
-    public List<Note> getNotes() { return notes; }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    //     TODO: Fixa så att metoden uppdaterar rätt Note (istället för den första i listan)
+    public void updateNote(Note updatedNote) {
+        // Get the list of notes, find the matching note and update its properties
+        List<Note> notes = getNotes();
+
+        for (int i = 0; i < notes.size(); i++) {
+            Note note = notes.get(i);
+
+            if (note.getId() == updatedNote.getId()) {
+
+                note.setNoteName(updatedNote.getNoteName());
+                note.setNoteText(updatedNote.getNoteText());
+
+                // Update the note in the list of notes and exit the loop
+                notes.set(i, note);
+                break;
+            }
+        }
+
+    }
+
+    ;
+
+//     TODO: Fixa så att metoden tar bort rätt Note (istället för den första i listan)
+    public void removeNote(Note note){
+        // Get the list of notes and find the matching note
+        List<Note> notes = new ArrayList<>(getNotes());
+
+        for (int i = 0; i < notes.size(); i++) {
+            Note currentNote = notes.get(i);
+
+            System.out.println("Current note is: " + currentNote.getId());
+            System.out.println(note.getId());
+
+            if (currentNote.getId() == note.getId()) {
+                this.notes.remove(i);
+                System.out.println(note.getId() + " removed");
+                break;
+            }
+        }
+    }
+
+    public void saveNotesToSharedPreferences(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String notesJson = gson.toJson(notes);
+        editor.putString(SHARED_PREF_KEY, notesJson);
+        editor.apply();
+    }
+
+    public void loadNotesFromSharedPreferences(String json) {
+        if (json != null) {
+            Gson gson = new Gson();
+            notes = gson.fromJson(json, new TypeToken<ArrayList<Note>>() {}.getType());
+        }
+    }
+
 }
+

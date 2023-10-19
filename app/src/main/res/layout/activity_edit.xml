@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fish_and_champagne"
-    tools:context=".EditActivity">
+    tools:context=".EditActivity"
+    android:id="@+id/editActivityConstraintLayout">
 
     <EditText
         android:id="@+id/etNoteTitle"
