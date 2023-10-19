@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         rvNoteList.setLayoutManager(layoutManager);
         // Apply ItemDecoration to be able to scroll the last note in the RecyclerView past the goldfish
-        // TODO: Fixa problemet med att bubblan nere till vänster stretchar till 3x sin storlek när jämnt antal element visas
         int bottomSpace = getResources().getDimensionPixelSize(R.dimen.bottom_space);
         rvNoteList.addItemDecoration(new BottomSpaceItemDecoration(bottomSpace));
 
