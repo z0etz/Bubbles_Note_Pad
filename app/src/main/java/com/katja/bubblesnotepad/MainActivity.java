@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Button bNewNote = findViewById(R.id.bNewNote);
 
         // Initiate presenter and show saved notes in RecyclerView
-        presenter = new MainPresenter(new NoteManager(), this, this, new Navigator(this));
-        presenter.loadAllNotes();
+        presenter = new MainPresenter(new NoteManager(this), this, this, new Navigator(this));
         presenter.onNoteListCreated();
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -62,10 +61,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onItemClick(Note note) {
         presenter.editNote(note);
-    }
-    protected void onPause() {
-        super.onPause(); // Call the superclass method first
-        presenter.saveAllNotes();
     }
 
 }

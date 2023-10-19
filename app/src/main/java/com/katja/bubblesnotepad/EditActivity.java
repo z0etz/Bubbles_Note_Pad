@@ -31,7 +31,7 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
 
         etNoteText = findViewById(R.id.etNoteText);
 
-        presenter = new MainPresenter(new NoteManager(), this, this, new Navigator(this));
+        presenter = new MainPresenter(new NoteManager(this), this, this, new Navigator(this));
 
         // Check if you are in edit mode (noteToEdit is passed from MainActivity)
         if (getIntent().hasExtra("noteToEdit")) {

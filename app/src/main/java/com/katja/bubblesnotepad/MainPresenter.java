@@ -21,6 +21,7 @@ public class MainPresenter implements MainContract.Presenter {
         this.noteManager = noteManager;
         this.view = view;
         this.navigator = navigator;
+        noteManager.loadNotesFromSharedPreferences();
     }
 
     //Methods
@@ -68,20 +69,4 @@ public class MainPresenter implements MainContract.Presenter {
         view.showNotes(notes);
     }
 
-    @Override
-    public String saveAllNotes() {
-        noteManager.saveNotesToSharedPreferences(context);
-        // TODO: Vill jag returnera något?
-        return null;
-    }
-
-    @Override
-    public void loadAllNotes() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("notes", Context.MODE_PRIVATE);
-        String jsonArray = sharedPreferences.getString("notes_key", null);
-        if (jsonArray != null) {
-            noteManager.loadNotesFromSharedPreferences(jsonArray);
-        }
-
-    }
 }

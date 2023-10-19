@@ -24,15 +24,11 @@ public interface MainContract {
 
         Note editNote(Note note);
 
-        default void updateNote(Note updatedNote){
+        default void updateNote(Note updatedNote) {
 
         }
 
         void onNoteListCreated();
-
-        String saveAllNotes();
-
-        void loadAllNotes();
 
     }
 }

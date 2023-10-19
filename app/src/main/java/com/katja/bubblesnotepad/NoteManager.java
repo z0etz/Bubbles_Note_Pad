@@ -13,7 +13,13 @@ public class NoteManager {
     private static final String SHARED_PREF_NAME = "notes";
     private static final String SHARED_PREF_KEY = "notes_key";
     private static ArrayList<Note> notes = new ArrayList<>();
-    private int nextId = 0; // Initiate ID counter
+    private static int nextId = 0; // Initiate ID counter
+    Context context;
+
+    //Constructor
+    public NoteManager(Context context){
+        this.context = context;
+    }
 
     public Note createNote(String noteName, String noteText) {
         int newId = nextId;
@@ -21,6 +27,7 @@ public class NoteManager {
 
         Note note = new Note(newId, noteName, noteText);
         notes.add(note);
+        saveNotesToSharedPreferences();
         return note;
     }
 
@@ -46,10 +53,9 @@ public class NoteManager {
                 break;
             }
         }
-
+        saveNotesToSharedPreferences();
     }
 
-    ;
 
 //     TODO: Fixa så att metoden tar bort rätt Note (istället för den första i listan)
     public void removeNote(Note note){
@@ -68,9 +74,10 @@ public class NoteManager {
                 break;
             }
         }
+        saveNotesToSharedPreferences();
     }
 
-    public void saveNotesToSharedPreferences(Context context) {
+    public void saveNotesToSharedPreferences() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -79,10 +86,12 @@ public class NoteManager {
         editor.apply();
     }
 
-    public void loadNotesFromSharedPreferences(String json) {
-        if (json != null) {
+    public void loadNotesFromSharedPreferences() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String jsonArray = sharedPreferences.getString(SHARED_PREF_KEY, null);
+        if (jsonArray != null) {
             Gson gson = new Gson();
-            notes = gson.fromJson(json, new TypeToken<ArrayList<Note>>() {}.getType());
+            notes = gson.fromJson(jsonArray, new TypeToken<ArrayList<Note>>() {}.getType());
         }
     }
 
