@@ -9,7 +9,6 @@ public class Navigator {
         private Context context;
 
         public Navigator(Context context) {
-
             this.context = context;
         }
 

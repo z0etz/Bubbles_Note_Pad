@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BottomSpaceItemDecoration extends RecyclerView.ItemDecoration {
-    //Hur mycket utrymme som läggs till längst ner i recycler view
+    //How much empty space is added at the bottom of the RecyclerView
     private final int space;
 
     public BottomSpaceItemDecoration(int space) {
@@ -15,7 +15,6 @@ public class BottomSpaceItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    //TODO: Fixa problemet med outRect och view nedan - "Not annotated parameter overrides @NonNull parameter"
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildLayoutPosition(view);
 

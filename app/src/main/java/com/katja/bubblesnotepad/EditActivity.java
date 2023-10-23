@@ -33,9 +33,18 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
         if (getIntent().hasExtra("noteToEdit")) {
             noteToEdit = (Note) getIntent().getSerializableExtra("noteToEdit");
             // Pre-fill the EditText fields with existing note data
-            //TODO: Fixa hantering av ifall de nedan blir null
-            etNoteTitle.setText(noteToEdit.getNoteName());
-            etNoteText.setText(noteToEdit.getNoteText());
+            if (noteToEdit.getNoteName() != null) {
+                etNoteTitle.setText(noteToEdit.getNoteName());
+            }
+            else {
+                etNoteTitle.setText("");
+            }
+            if (noteToEdit.getNoteText() != null) {
+                etNoteText.setText(noteToEdit.getNoteText());
+            }
+            else {
+                etNoteText.setText("");
+            }
         }
 
         bSaveNote = findViewById(R.id.bSaveNote);
@@ -59,13 +68,15 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
                     noteToEdit.setNoteName(title);
                     noteToEdit.setNoteText(text);
                     presenter.updateNote(noteToEdit);
+                    finish();
                 } else {
                     // Create a new note
                     presenter.saveNote(title, text);
+                    finish();
                 }
 
-                // TODO: Gör egen design för Toast
                 Toast.makeText(EditActivity.this, title + " saved", Toast.LENGTH_LONG).show();
+
 //                Snyggare alternativ till toast, som dock inte "följer med" när ny aktivitet startas (anteckning inför framtida projekt):
 //                Snackbar.make(findViewById(R.id.editActivityConstraintLayout), title + " saved", Snackbar.LENGTH_LONG);
 
@@ -76,6 +87,7 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
             @Override
             public void onClick(View v) {
                 presenter.cancelEdit();
+                finish();
             }
         });
 
@@ -86,9 +98,11 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
                     // Remove the note currently displayed
                     Toast.makeText(EditActivity.this, noteToEdit.getNoteName() + " deleted", Toast.LENGTH_LONG).show();
                     presenter.removeNote(noteToEdit);
+                    finish();
                 } else {
                     // Cancel creating a new note
                     presenter.cancelEdit();
+                    finish();
                 }
             }
         });

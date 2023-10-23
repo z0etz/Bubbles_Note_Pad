@@ -1,6 +1,6 @@
 package com.katja.bubblesnotepad;
 
-// App byggd enligt MVP
+// App built according to MVP
 
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             @Override
             public void onClick(View v) {
                 presenter.createNoteClicked();
+                finish();
 
             }
         });
