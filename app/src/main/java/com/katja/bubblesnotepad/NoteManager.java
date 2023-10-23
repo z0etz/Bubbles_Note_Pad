@@ -16,6 +16,7 @@ public class NoteManager {
 
     //Constructor
     public NoteManager(Context context){
+
         this.context = context;
     }
 
@@ -87,6 +88,23 @@ public class NoteManager {
         if (jsonArray != null) {
             Gson gson = new Gson();
             notes = gson.fromJson(jsonArray, new TypeToken<ArrayList<Note>>() {}.getType());
+        }
+    }
+
+    public void initializeNextId() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String jsonArray = sharedPreferences.getString(SHARED_PREF_KEY, null);
+
+        if (jsonArray != null) {
+            Gson gson = new Gson();
+            List<Note> existingNotes = gson.fromJson(jsonArray, new TypeToken<List<Note>>() {}.getType());
+
+            // Find the highest ID among existing notes
+            for (Note note : existingNotes) {
+                if (note.getId() >= nextId) {
+                    nextId = note.getId() + 1;
+                }
+            }
         }
     }
 

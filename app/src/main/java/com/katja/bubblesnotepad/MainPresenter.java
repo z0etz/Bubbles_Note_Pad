@@ -1,11 +1,6 @@
 package com.katja.bubblesnotepad;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-
 import java.util.List;
 
 public class MainPresenter implements MainContract.Presenter {
@@ -67,6 +62,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void onNoteListCreated() {
         List<Note> notes = noteManager.getNotes();
         view.showNotes(notes);
+        noteManager.initializeNextId();
     }
 
 }
