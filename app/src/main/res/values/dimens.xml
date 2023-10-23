@@ -16,5 +16,5 @@
     <dimen name="banner_height">65dp</dimen>
     <dimen name="fish_width">133dp</dimen>
     <dimen name="fish_height">219.5dp</dimen>
-    <dimen name="bottom_space">200dp</dimen>
+    <dimen name="bottom_space">220dp</dimen>
 </resources>

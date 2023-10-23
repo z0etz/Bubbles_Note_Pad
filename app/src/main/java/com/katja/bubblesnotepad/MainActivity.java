@@ -1,16 +1,14 @@
 package com.katja.bubblesnotepad;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+// App byggd enligt MVP
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
-import android.util.Log;
-import com.katja.bubblesnotepad.NoteAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, NoteAdapter.OnItemClickListener {
 
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         // Initiate presenter and show saved notes in RecyclerView
         presenter = new MainPresenter(new NoteManager(this), this, this, new Navigator(this));
         presenter.onNoteListCreated();
-
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         rvNoteList.setLayoutManager(layoutManager);
         // Apply ItemDecoration to be able to scroll the last note in the RecyclerView past the goldfish

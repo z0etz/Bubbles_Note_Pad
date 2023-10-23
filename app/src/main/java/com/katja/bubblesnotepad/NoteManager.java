@@ -2,8 +2,6 @@ package com.katja.bubblesnotepad;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
@@ -21,21 +19,19 @@ public class NoteManager {
         this.context = context;
     }
 
-    public Note createNote(String noteName, String noteText) {
+    public void createNote(String noteName, String noteText) {
         int newId = nextId;
         nextId++;
 
         Note note = new Note(newId, noteName, noteText);
         notes.add(note);
         saveNotesToSharedPreferences();
-        return note;
     }
 
     public List<Note> getNotes() {
         return notes;
     }
 
-    //     TODO: Fixa så att metoden uppdaterar rätt Note (istället för den första i listan)
     public void updateNote(Note updatedNote) {
         // Get the list of notes, find the matching note and update its properties
         List<Note> notes = getNotes();
@@ -57,7 +53,6 @@ public class NoteManager {
     }
 
 
-//     TODO: Fixa så att metoden tar bort rätt Note (istället för den första i listan)
     public void removeNote(Note note){
         // Get the list of notes and find the matching note
         List<Note> notes = new ArrayList<>(getNotes());
