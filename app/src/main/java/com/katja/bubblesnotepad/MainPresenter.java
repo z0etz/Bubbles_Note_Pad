@@ -23,16 +23,13 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void createNoteClicked() {
         navigator.navigateToActivity(EditActivity.class);
-    }
-
-    @Override
-    public void noteClicked() {
 
     }
 
     @Override
     public void cancelEdit() {
         navigator.navigateToActivity(MainActivity.class);
+
     }
 
     @Override
@@ -47,14 +44,14 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public Note editNote(Note note) {
+    public Note editNoteClicked(Note note) {
         navigator.navigateToActivityWithExtra(EditActivity.class, "noteToEdit", note);
         return note;
     }
 
     @Override
     public void updateNote(Note updatedNote) {
-        noteManager.updateNote(updatedNote); // Update the note in your data source
+        noteManager.updateNote(updatedNote); // Update the note currently in Edit mode
         navigator.navigateToActivity(MainActivity.class);
     }
 

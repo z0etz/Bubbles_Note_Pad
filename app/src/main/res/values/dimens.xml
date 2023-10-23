@@ -17,4 +17,6 @@
     <dimen name="fish_width">133dp</dimen>
     <dimen name="fish_height">219.5dp</dimen>
     <dimen name="bottom_space">220dp</dimen>
+    <dimen name="toast_corner_radius">50dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
 </resources>

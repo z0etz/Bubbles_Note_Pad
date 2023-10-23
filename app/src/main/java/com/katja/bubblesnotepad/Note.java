@@ -33,12 +33,12 @@ public class Note implements Serializable {
         this.noteText = noteText;
     }
 
+    public int getId() {
+        return id;
+    }
+
     //Other methods
     public String toString() {
         return noteName;
-    }
-
-    public int getId() {
-        return id;
     }
 }

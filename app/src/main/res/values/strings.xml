@@ -6,4 +6,5 @@
     <string name="delete">Släng</string>
     <string name="title">Titel</string>
     <string name="note">Anteckning</string>
+    <string name="text_placeholder">text_placeholder</string>
 </resources>

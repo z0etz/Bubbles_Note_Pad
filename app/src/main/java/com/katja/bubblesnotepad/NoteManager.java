@@ -55,18 +55,14 @@ public class NoteManager {
 
 
     public void removeNote(Note note){
-        // Get the list of notes and find the matching note
+        // Get the list of notes, find the matching note, delete it and exit the loop
         List<Note> notes = new ArrayList<>(getNotes());
 
         for (int i = 0; i < notes.size(); i++) {
             Note currentNote = notes.get(i);
 
-            System.out.println("Current note is: " + currentNote.getId());
-            System.out.println(note.getId());
-
             if (currentNote.getId() == note.getId()) {
                 this.notes.remove(i);
-                System.out.println(note.getId() + " removed");
                 break;
             }
         }

@@ -2,9 +2,11 @@ package com.katja.bubblesnotepad;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
@@ -67,19 +69,15 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
                     // Update the existing note
                     noteToEdit.setNoteName(title);
                     noteToEdit.setNoteText(text);
+                    customToast(title + " saved");
                     presenter.updateNote(noteToEdit);
                     finish();
                 } else {
                     // Create a new note
+                    customToast(title + " saved");
                     presenter.saveNote(title, text);
                     finish();
                 }
-
-                Toast.makeText(EditActivity.this, title + " saved", Toast.LENGTH_LONG).show();
-
-//                Snyggare alternativ till toast, som dock inte "följer med" när ny aktivitet startas (anteckning inför framtida projekt):
-//                Snackbar.make(findViewById(R.id.editActivityConstraintLayout), title + " saved", Snackbar.LENGTH_LONG);
-
             }
         });
 
@@ -95,8 +93,12 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
             @Override
             public void onClick(View v) {
                 if (noteToEdit != null) {
-                    // Remove the note currently displayed
-                    Toast.makeText(EditActivity.this, noteToEdit.getNoteName() + " deleted", Toast.LENGTH_LONG).show();
+                    // Throw toast and remove the note currently displayed
+                    customToast(noteToEdit.getNoteName() + " deleted");
+//                    Alternativ med standard-toast, sparad för framtida referens;
+//                    Toast.makeText(EditActivity.this, noteToEdit.getNoteName() + " deleted", Toast.LENGTH_LONG).show();
+//                    Snyggare alternativ till toast, som dock inte "följer med" när ny aktivitet startas (anteckning inför framtida projekt):
+//                    Snackbar.make(findViewById(R.id.editActivityConstraintLayout), title + " saved", Snackbar.LENGTH_LONG);
                     presenter.removeNote(noteToEdit);
                     finish();
                 } else {
@@ -111,6 +113,24 @@ public class EditActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showNotes(List<Note> notes) {
+
+    }
+
+    @Override
+    public void customToast(String text) {
+        // Inflate the custom layout
+        LayoutInflater inflater = getLayoutInflater();
+        View customToastView = inflater.inflate(R.layout.custom_toast, null);
+
+        // Set the text message
+        TextView messageTextView = customToastView.findViewById(R.id.custom_toast_message);
+        messageTextView.setText(text);
+
+        // Create and show the Toast
+        Toast customToast = new Toast(getApplicationContext());
+        customToast.setDuration(Toast.LENGTH_LONG);
+        customToast.setView(customToastView);
+        customToast.show();
 
     }
 }

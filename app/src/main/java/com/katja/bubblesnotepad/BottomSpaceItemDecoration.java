@@ -2,9 +2,9 @@ package com.katja.bubblesnotepad;
 
 import android.graphics.Rect;
 import android.view.View;
-
 import androidx.recyclerview.widget.RecyclerView;
 
+// This class is used to add spacing at the bottom of RecyclerView
 public class BottomSpaceItemDecoration extends RecyclerView.ItemDecoration {
     //How much empty space is added at the bottom of the RecyclerView
     private final int space;
