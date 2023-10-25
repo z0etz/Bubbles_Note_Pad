@@ -1,7 +1,7 @@
 package com.katja.bubblesnotepad;
 
 // App built according to MVP
-// GitHub: https://github.com/z0etz/Bubbles_Note_Pad.git
+// GitHub: https://github.com/z0etz/Bubbles_Note_Pad.git (Jag har nu i efterhand förstått att jag inte bör jobba direkt mot master även när jag bygger en app själv)
 // Kommentarer på svenska kan bortses ifrån, de är sparade minneasanteckningar för min egen del.
 
 import android.os.Bundle;
