@@ -1,6 +1,8 @@
 package com.katja.bubblesnotepad;
 
 // App built according to MVP
+// GitHub: https://github.com/z0etz/Bubbles_Note_Pad.git
+// Kommentarer på svenska kan bortses ifrån, de är sparade minneasanteckningar för min egen del.
 
 import android.os.Bundle;
 import android.view.View;
@@ -54,10 +56,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     }
 
+    @Override
+    public void customToast(String text) {
+
+    }
+
     //Method to open Edit mode for a note when it is clicked, pass the clicked note to the EditActivity for editing
     @Override
     public void onItemClick(Note note) {
-        presenter.editNote(note);
+        presenter.editNoteClicked(note);
     }
 
 }
